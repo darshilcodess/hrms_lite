@@ -1,0 +1,9 @@
+[build]
+  base = "client/hrms_lite"
+  command = "npm run build"
+  publish = "client/hrms_lite/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
