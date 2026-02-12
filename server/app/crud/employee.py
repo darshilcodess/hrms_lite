@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException
 
 from app.models.employee import Employee
+from app.models.attendance import Attendance
 from app.schemas.employee import EmployeeCreate
 
 
@@ -31,8 +32,10 @@ def get_all_employees(db: Session) -> list[Employee]:
 
 
 def delete_employee(db: Session, employee_id: int) -> None:
+    """Delete by primary key id (integer)."""
     employee = db.query(Employee).filter(Employee.id == employee_id).first()
     if not employee:
         raise HTTPException(status_code=404, detail="Employee not found")
+    db.query(Attendance).filter(Attendance.employee_id == employee_id).delete()
     db.delete(employee)
     db.commit()
