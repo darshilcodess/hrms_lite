@@ -1,7 +1,7 @@
 [build]
   base = "client/hrms_lite"
   command = "npm run build"
-  publish = "client/hrms_lite/dist"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
