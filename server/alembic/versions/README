@@ -1,0 +1,2 @@
+This folder holds Alembic migration scripts. Do not edit existing revisions;
+add new ones with `alembic revision -m "description"`.

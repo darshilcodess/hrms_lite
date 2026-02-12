@@ -1,0 +1,10 @@
+# Copy to .env and adjust as needed
+
+# PostgreSQL (used by docker-compose and backend)
+POSTGRES_USER=hrms
+POSTGRES_PASSWORD=hrms_secret
+POSTGRES_DB=hrms_lite
+POSTGRES_PORT=5432
+
+# For local runs (outside Docker), use:
+# DATABASE_URL=postgresql://hrms:hrms_secret@localhost:5432/hrms_lite
