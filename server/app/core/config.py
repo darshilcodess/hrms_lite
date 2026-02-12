@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     # App
     APP_NAME: str = "HRMS Lite API"
 
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,https://darshilhrms.netlify.app"
+
     # Database - use DATABASE_URL or build from parts
     DATABASE_URL: str = "postgresql://hrms:hrms_secret@localhost:5432/hrms_lite"
 

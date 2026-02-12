@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="app">
       <nav className="nav">
+        <span className="nav-brand">HRMS Lite</span>
         <NavLink to="/employees">Employees</NavLink>
         <NavLink to="/attendance">Attendance</NavLink>
       </nav>

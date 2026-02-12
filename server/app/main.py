@@ -9,9 +9,11 @@ from app.api.routes import employees, attendance
 
 app = FastAPI(title=settings.APP_NAME, version="0.1.0")
 
+_origins = [o.strip() for o in settings.CORS_ORIGINS.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173",'*'],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
