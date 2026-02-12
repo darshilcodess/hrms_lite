@@ -1,12 +1,22 @@
-import React from 'react'
+import { Routes, Route, NavLink } from 'react-router-dom';
+import Employees from './pages/Employees';
+import Attendance from './pages/Attendance';
+import './styles.css';
 
-const App = () => {
+function App() {
   return (
-    <div>
-      hello
-      
+    <div className="app">
+      <nav className="nav">
+        <NavLink to="/employees">Employees</NavLink>
+        <NavLink to="/attendance">Attendance</NavLink>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Employees />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/attendance" element={<Attendance />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

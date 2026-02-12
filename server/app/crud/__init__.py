@@ -1,3 +1,3 @@
-from app.crud import employee
+from app.crud import employee, attendance
 
-__all__ = ["employee"]
+__all__ = ["employee", "attendance"]

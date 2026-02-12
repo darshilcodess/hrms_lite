@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 from datetime import datetime
 
 from sqlalchemy import DateTime, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
 
@@ -15,3 +17,7 @@ class Employee(Base):
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
     department: Mapped[str] = mapped_column(String(128), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+
+    attendances: Mapped[list["Attendance"]] = relationship(
+        "Attendance", back_populates="employee", lazy="selectin"
+    )
