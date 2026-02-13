@@ -5,7 +5,7 @@ from sqlalchemy import text
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.api.routes import employees, attendance
+from app.api.v1 import api_router
 
 app = FastAPI(title=settings.APP_NAME, version="0.1.0")
 
@@ -19,8 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(employees.router)
-app.include_router(attendance.router)
+app.include_router(api_router)
 
 
 @app.get("/")

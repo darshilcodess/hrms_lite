@@ -31,6 +31,10 @@ def get_all_employees(db: Session) -> list[Employee]:
     return db.query(Employee).all()
 
 
+def get_employee_by_id(db: Session, employee_id: int) -> Employee | None:
+    return db.query(Employee).filter(Employee.id == employee_id).first()
+
+
 def delete_employee(db: Session, employee_id: int) -> None:
     """Delete by primary key id (integer)."""
     employee = db.query(Employee).filter(Employee.id == employee_id).first()

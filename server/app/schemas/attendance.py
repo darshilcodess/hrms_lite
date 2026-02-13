@@ -18,3 +18,11 @@ class AttendanceResponse(BaseModel):
     date: date
     status: str
     created_at: datetime
+
+
+class AttendanceWithEmployeeResponse(BaseModel):
+    id: int
+    employee_id: int
+    employee_name: str
+    date: date
+    status: str

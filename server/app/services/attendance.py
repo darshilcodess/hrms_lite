@@ -1,3 +1,6 @@
+from datetime import date as date_type
+
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from fastapi import HTTPException
@@ -48,3 +51,34 @@ def get_attendance_by_employee(db: Session, employee_id: int) -> list[Attendance
         .order_by(Attendance.date.desc())
         .all()
     )
+
+
+def get_recent_attendance_with_employee(db: Session, limit: int = 10) -> list[tuple]:
+    """Return recent attendance rows with (Attendance, employee full_name)."""
+    rows = (
+        db.query(Attendance, Employee.full_name)
+        .join(Employee, Attendance.employee_id == Employee.id)
+        .order_by(Attendance.date.desc(), Attendance.id.desc())
+        .limit(limit)
+        .all()
+    )
+    return rows
+
+
+def get_today_stats(db: Session, today: date_type | None = None) -> tuple[int, int]:
+    """Return (present_count, absent_count) for the given date (default today)."""
+    if today is None:
+        today = date_type.today()
+    present = (
+        db.query(func.count(Attendance.id))
+        .filter(Attendance.date == today, Attendance.status == "Present")
+        .scalar()
+        or 0
+    )
+    absent = (
+        db.query(func.count(Attendance.id))
+        .filter(Attendance.date == today, Attendance.status == "Absent")
+        .scalar()
+        or 0
+    )
+    return (present, absent)
